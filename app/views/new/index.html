@@ -1,6 +1,6 @@
 {% extends "layouts/main.html" %}
 
-{% set pageName="Prototype" %}
+
 
 {% block content %}
 
@@ -9,10 +9,15 @@
 
 
     <h1 class="govuk-heading-xl">
-      {{ pageName }}
+      {{ serviceName }}
     </h1>
-<p><a href="/new"> Go to the first page of prototype. </a></p>
 
+
+{{ govukButton({
+
+  text: "Start now",
+  isStartButton: true
+}) }}
   </div>
 </div>
 
