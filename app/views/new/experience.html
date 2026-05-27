@@ -1,0 +1,64 @@
+{% extends "layouts/main.html" %}
+
+{% set pageName = 'How many years of experience do you have in UX Design?' %}
+
+{% block beforeContent %}
+
+{{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history .back()"
+}) }}
+
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+
+
+<form novalidate method ="post">
+
+{{ govukRadios({
+  name: "[new][yearsOfExperience]",
+  id: "[new][yearsOfExperience]",
+  fieldset: {
+    legend: {
+      text: pageName,
+      isPageHeading: true,
+      classes: "govuk-fieldset__legend--l"
+    }
+  },
+  value: data.new.yearsOfExperience,
+  items: [
+    {
+      value: "Less than a year",
+      text: "Less than a year"
+    },
+     {
+      value: "One or more",
+      text: "One or more"
+    },
+    {
+      value: "Three or more",
+      text: "Three or more"
+    },
+    {
+      value: "None",
+      text: "None"
+    }
+  ]
+}) }}
+
+{{ govukButton({
+  text: "Continue"
+}) }}
+
+</form>
+
+
+  </div>
+</div>
+
+{% endblock %}

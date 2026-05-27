@@ -2,11 +2,20 @@
 
 {% set pageName = 'Your email address' %}
 
+{% block beforeContent %}
+
+{{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history .back()"
+}) }}
+
+{% endblock %}
+
 {% block content %}
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
-<form>
+<form novalidate method="post">
 {% from "govuk/components/input/macro.njk" import govukInput %}
 
 {{ govukInput({
