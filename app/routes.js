@@ -40,5 +40,11 @@ router.post('/experience', function (req, res) {
     return res.redirect('/new/ineligible')
   }
 
-  return res.redirect('/next-page')
+  return res.redirect('/new/expertise')
+})
+
+router.post ('/new/expertise', (req,res) => {
+
+    res.redirect ('/new/skills')
+
 })
