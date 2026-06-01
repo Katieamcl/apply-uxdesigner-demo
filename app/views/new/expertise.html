@@ -1,0 +1,46 @@
+{% extends "layouts/main.html" %}
+
+{% set pageName = 'What is the area of your expertise?' %}
+
+{% block pageTitle %}
+  {{ pageName }} – {{ serviceName }} – GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+<form novalidate method="post">
+
+{{ govukCharacterCount({
+  id: "new-expertise",
+  name: "new.expertise",
+  label: {
+    text: pageName,
+    isPageHeading: true,
+    classes: "govuk-label--l"
+  },
+  value: data.new.expertise,
+  maxwords: 200
+
+}) }}
+
+
+
+{{ govukButton({
+  text: "Continue"
+}) }}
+
+</form>
+
+  </div>
+</div>
+
+{% endblock %}

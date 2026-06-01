@@ -48,3 +48,9 @@ router.post ('/new/expertise', (req,res) => {
     res.redirect ('/new/skills')
 
 })
+
+router.post ('/new/skills', (req,res) => {
+
+    res.redirect ('/new/check')
+
+})

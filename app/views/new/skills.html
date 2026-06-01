@@ -1,0 +1,83 @@
+{% extends "layouts/main.html" %}
+
+{% set pageName = 'What are your skills?' %}
+
+{% block pageTitle %}
+  {{ pageName }} – {{ serviceName }} – GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+<form novalidate method="post">
+{%set otherInput %}
+
+  {{ govukInput({
+    id: "[new][otherObject]",
+    name: "[new][otherObject]",
+    label: {
+      text: "Other",
+      isPageHeading: true,
+      classes: "govuk-label--s"
+    },
+
+    value: data.new.otherObject
+  }) }}
+{% endset %}
+
+{{ govukCheckboxes({
+  name: "[new][skills]",
+  id: "[new][skills]",
+  fieldset: {
+    legend: {
+      text: "What are your skills?",
+      isPageHeading: true,
+      classes: "govuk-fieldset__legend--l"
+    }
+  },
+  hint: {
+    text: "Select all that apply"
+  },
+  values: data.new.skills if data.new.skills else [],
+  items: [
+    {
+      value: "Interaction Design (IxD)",
+      text: "Interaction Design (IxD)"
+    },
+    {
+      value: "Visual Design",
+      text: "Visual Design"
+    },
+    {
+      value: "User Research (UR)",
+      text: "User Research (UR)"
+    },
+    {
+      value: "Other",
+      text: "Other",
+      conditional: {
+        html: otherInput}
+      }
+      ]
+}) }}
+
+
+
+{{ govukButton({
+  text: "Continue"
+}) }}
+
+</form>
+
+  </div>
+</div>
+
+{% endblock %}

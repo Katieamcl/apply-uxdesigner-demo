@@ -1,0 +1,161 @@
+{% extends "layouts/main.html" %}
+
+{% set pageName = 'Check details and send your application' %}
+
+{% block pageTitle %}
+  {{ pageName }} – {{ serviceName }} – GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <h1 class="govuk-heading-l">
+      {{ pageName }}
+    </h1>
+
+    <p>Check your details are correct and send your application.</p>
+
+    {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+
+
+{% set skillsObject%}
+<ul class="govuk-list govuk-list--bullet">
+  {% for item in data.new.skills %}
+
+  <li>
+    {{item}}
+
+{% if item == "Other" and data.new.otherObject %} - {{data.new.otherObject}} {% endif %}
+
+  </li>
+
+  {% endfor %}
+</ul>
+
+
+{% endset %}
+
+{{ govukSummaryList({
+  rows: [
+    {
+      key: {
+        text: "Your email address"
+      },
+      value: {
+        text: data.new.emailAddress
+      },
+      actions: {
+        items: [
+          {
+            href: "/new/email-address",
+            text: "Change",
+            visuallyHiddenText: "Your email address"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Your name"
+      },
+      value: {
+        text: data.new.firstName + ' ' + data.new.lastName
+      },
+      actions: {
+        items: [
+          {
+            href: "/new/name",
+            text: "Change",
+            visuallyHiddenText: "Your name"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "How many years of experience do you have in UX Design?"
+      },
+      value: {
+        text: data.new.yearsOfExperience
+      },
+      actions: {
+        items: [
+          {
+            href: "/new/experience",
+            text: "Change",
+            visuallyHiddenText: "change years of experience"
+          }
+        ]
+      }
+    },
+  {
+      key: {
+        text: "What is the area of your expertise?"
+      },
+      value: {
+        text: data.new.expertise
+      },
+      actions: {
+        items: [
+          {
+            href: "/new/expertise",
+            text: "Change",
+            visuallyHiddenText: "the area of your expertise"
+          }
+        ]
+      }
+    },
+  {
+      key: {
+        text: "What are your skills?"
+      },
+      value: {
+        html: skillsObject
+      },
+      actions: {
+        items: [
+          {
+            href: "/new/skills",
+            text: "Change",
+            visuallyHiddenText: "your skills"
+          }
+        ]
+      }
+    }
+  ]
+}) }}
+
+    {{ govukButton({
+      text: "Send application"
+    }) }}
+
+
+<form novalidate method="post">
+{%set otherInput %}
+
+  {{ govukInput({
+    id: "[new][otherObject]",
+    name: "[new][otherObject]",
+    label: {
+      text: "Other",
+      isPageHeading: true,
+      classes: "govuk-label--s"
+    },
+
+    value: data.new.otherObject
+  }) }}
+{% endset %}
+</form>
+
+  </div>
+</div>
+
+{% endblock %}
