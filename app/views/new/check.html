@@ -55,7 +55,7 @@
       actions: {
         items: [
           {
-            href: "/new/email-address",
+            href: "/new/email-address?returnUrl=/new/check",
             text: "Change",
             visuallyHiddenText: "Your email address"
           }
@@ -72,7 +72,7 @@
       actions: {
         items: [
           {
-            href: "/new/name",
+            href: "/new/name?returnUrl=/new/check",
             text: "Change",
             visuallyHiddenText: "Your name"
           }
@@ -89,7 +89,7 @@
       actions: {
         items: [
           {
-            href: "/new/experience",
+            href: "/new/experience?returnUrl=/new/check",
             text: "Change",
             visuallyHiddenText: "change years of experience"
           }
@@ -106,7 +106,7 @@
       actions: {
         items: [
           {
-            href: "/new/expertise",
+            href: "/new/expertise?returnUrl=/new/check",
             text: "Change",
             visuallyHiddenText: "the area of your expertise"
           }
@@ -123,7 +123,7 @@
       actions: {
         items: [
           {
-            href: "/new/skills",
+            href: "/new/skills?returnUrl=/new/check",
             text: "Change",
             visuallyHiddenText: "your skills"
           }
@@ -132,13 +132,15 @@
     }
   ]
 }) }}
+<form novalidate method="post">
+<p>By submitting this application you're confirming that the information you've provided is correct.</p>
 
     {{ govukButton({
       text: "Send application"
     }) }}
+</form>
 
 
-<form novalidate method="post">
 {%set otherInput %}
 
   {{ govukInput({
