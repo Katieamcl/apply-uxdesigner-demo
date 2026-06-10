@@ -3,7 +3,7 @@
 {% set pageName = 'Your email address' %}
 
 {% block beforeContent %}
-
+{{ super()}}
 {{ govukBackLink({
   text: "Back",
   href: "javascript:window.history .back()"
